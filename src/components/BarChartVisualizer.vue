@@ -68,9 +68,17 @@ export default {
       barChart: BarChart().barColor("orange"),  //this is the correct solution
     }
   },
+  mounted(){  // force refreshPlot call at loading page
+    this.refreshPlot();
+  },
+  methods: {
+    refreshPlot: function () {
+      d3.select("svg#viz").datum(this.numbers).call(this.barChart);
+    }
+  },
   watch: {  //execute everytime the property is changing
-    numbers: function (newValue) {
-      d3.select("svg#viz").datum(newValue).call(this.barChart);
+    numbers: function () {
+      this.refreshPlot();
     }
   }
 }
