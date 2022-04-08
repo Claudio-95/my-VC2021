@@ -3,16 +3,19 @@
     <h1>First project with D3 and Vue.js</h1>
     <p>{{numbers}}</p>
     <button @click="shuffleNumbers()">Shuffle</button> <!-- pulsante che genera numeri casuali -->
+    <BarChartVisualizer :numbers="numbers"></BarChartVisualizer>  <!-- property numbers has same value of numbers variable -->
   </div>
 </template>
 
 <script>
 
+import BarChartVisualizer from "@/components/BarChartVisualizer";
 const d3 = require("d3");
 
 export default {
   name: 'App',  //it's a class
   components: {
+    BarChartVisualizer,
   },
   data: function () {  //function serve per non dare l'array numbers come costante
     return {
