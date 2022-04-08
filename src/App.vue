@@ -1,16 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>First project with D3 and Vue.js</h1>
+    <p>{{numbers}}</p>
+    <button @click="shuffleNumbers()">Shuffle</button> <!-- pulsante che genera numeri casuali -->
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+const d3 = require("d3");
 
 export default {
-  name: 'App',
+  name: 'App',  //it's a class
   components: {
-    HelloWorld
+  },
+  data: function () {  //function serve per non dare l'array numbers come costante
+    return {
+      numbers: [1,3,4,6,9], //use command Fix ESLint Problems with right click for fix code
+    }
+  }, // we store, for example, numbers or newNumbers variable in second visualization of d3.js
+  methods: {
+    shuffleNumbers: function () {
+      this.numbers = d3
+          .range(Math.round(Math.random() * 20))
+          .map(() => Math.round(Math.random() * 100))
+    }
   }
+
 }
 </script>
 
